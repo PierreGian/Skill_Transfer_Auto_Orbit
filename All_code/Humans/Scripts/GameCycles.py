@@ -134,6 +134,8 @@ for subj,name in enumerate(names):
                         toAdd='R'
                     elif(evt=="hold-fire"):
                         toAdd='F'
+                    elif(evt=="hold-thrust"):
+                        continue
                     if(not(cc==0)): #1st cycle: remove first element/others: would be fortress-respawn 
                         Evts.append(toAdd)
                         c_IPI = evt_time-prev_time
