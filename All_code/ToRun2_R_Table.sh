@@ -1,5 +1,5 @@
 #!/bin/bash
-MODEL="Model1"
+MODEL="Model1" #Change the name of the model here!
 
 cd Preprocess_for_R
 echo "Copy/Pasting output to R preprocessing folder"
