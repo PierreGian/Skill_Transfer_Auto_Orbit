@@ -6,6 +6,10 @@ GENERAL INFORMATION
 
 This secondary README file provides instructions on how to preprocess and analyze the data based on the game event files. You can also find information about the different files and folders at the bottom.
 
+IMPORTANT
+
+Before you follow the instructions, we encourage you to check the dependencies for R and Python to make sure that you have the right packages and libraries to run the code. If you miss one of these packages, you may run into unexpected errors when running the code.
+
 INSTRUCTIONS
 
 1. Download repository from Kilt Hub
