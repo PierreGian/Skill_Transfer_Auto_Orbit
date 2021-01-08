@@ -1,8 +1,4 @@
 #!/bin/bash
-#SCORES is the file with all the subject names & conditions
-SCORES="Summary_Scores_ALL.txt"
-#OUTPUT is the desired output prefix for the output files
-OUTPUT="Humans_Final"
 
 mkdir Game_Cycles
 mkdir Discrete_Game_Cycles
@@ -27,4 +23,4 @@ echo "Computing Autocorrelation measures 5/6"
 python ACF.py
 echo "Computing Resets, Deflations & Misses 6/6"
 python ResDefMis.py
-#echo "DONE"
+echo "DONE"
