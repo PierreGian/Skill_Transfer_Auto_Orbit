@@ -13,12 +13,12 @@ def FindSubIdx(name,all_names):
 
 ##### Load prepared Excel data file with scores
 GameNb=15
-SubjNb = 180
+SubjNb = 80
 HumanPath = '../Human_Inputs/Outputs/'
 names1=[j for j in range(SubjNb)]
 conds1=[('','') for j in range(SubjNb)]
 avgs=np.zeros(SubjNb)
-SeqFile=HumanPath+'Summary_Scores_ALL.txt'
+SeqFile=HumanPath+'Transfer_Scores_Humans.txt'
 f_toOpen = open(SeqFile,"r") 
 lines = [line.rstrip().split("\t") for line in f_toOpen]
 cats = lines[0]
@@ -148,31 +148,22 @@ while(done==0): #make sure all the elements have been deleted
 
 
 # # Within-subject analyses
-AllSpeeds = ['slow','medium','fast']
+AllSpeeds = ['slow','medium']
 for CurSpeed in AllSpeeds:
- FastCombo=[CurSpeed,'fast']
  MediumCombo=[CurSpeed,'medium']
  SlowCombo=[CurSpeed,'slow']
 
  #Initialization
  SlowIFI = [[[] for k in range(GameNb)] for s in range(len(names))] #1) Subject, 2) GameNb, 3) IFIs
  MediumIFI = [[[] for k in range(GameNb)] for s in range(len(names))]
- FastIFI = [[[] for k in range(GameNb)] for s in range(len(names))]
- NbNames = int(len(names)/9)
+ NbNames = int(len(names)/4)
  SlowNames = ['' for i in range(NbNames)]
  MediumNames = ['' for i in range(NbNames)]
- FastNames = ['' for i in range(NbNames)]
 
- inds = [0,0,0]
+ inds = [0,0]
  #Append date to arrays
  for i,S in enumerate(IPIs_all):
-     if(conds[i][0]==FastCombo[0] and conds[i][1]==FastCombo[1]): #fast condition
-         FastNames[inds[2]] = names[i]
-         inds[2] = inds[2] + 1
-         for j,cyc in enumerate(S):
-             for k,el in enumerate(cyc):
-                 FastIFI[i][GameNbs[i][j][k]].append(el)
-     elif(conds[i][0]==MediumCombo[0] and conds[i][1]==MediumCombo[1]): #medium condition
+     if(conds[i][0]==MediumCombo[0] and conds[i][1]==MediumCombo[1]): #medium condition
          MediumNames[inds[1]] = names[i]
          inds[1] = inds[1] + 1
          for j,cyc in enumerate(S):
@@ -187,71 +178,52 @@ for CurSpeed in AllSpeeds:
 
 
  #CoefV
- nbGroup = int(len(names)/9)
+ nbGroup = int(len(names)/4)
  Slow_CV = np.zeros((GameNb,nbGroup))
  Medium_CV = np.zeros((GameNb,nbGroup))
- Fast_CV = np.zeros((GameNb,nbGroup))
  MuSlow_CV = np.zeros(GameNb)
  MuMedium_CV = np.zeros(GameNb)
- MuFast_CV = np.zeros(GameNb)
  ISImuSlow = np.zeros((GameNb,nbGroup))
  ISImuMedium = np.zeros((GameNb,nbGroup))
- ISImuFast = np.zeros((GameNb,nbGroup))
  ISIstdSlow = np.zeros((GameNb,nbGroup))
  ISIstdMedium = np.zeros((GameNb,nbGroup))
- ISIstdFast = np.zeros((GameNb,nbGroup))
- MusISI = np.zeros((3,GameNb)) #Slow, medium, fast
- StdISI = np.zeros((3,GameNb))
+ MusISI = np.zeros((2,GameNb)) #Slow, medium
+ StdISI = np.zeros((2,GameNb))
 
- sub_inds = [0,0,0] #indices for each game speed
+ sub_inds = [0,0] #indices for each game speed
  for subj,ctup in enumerate(conds): 
-     if(ctup[0]==FastCombo[0] and ctup[1]==FastCombo[1]): #fast condition
-         for gg in range(GameNb):
-             cur_IFI = np.array(FastIFI[subj][gg])
-             if(not(cur_IFI.size == 0)):
-                 ISImuFast[gg][sub_inds[0]] = np.mean(cur_IFI)
-                 ISIstdFast[gg][sub_inds[0]] = np.std(cur_IFI)
-                 Fast_CV[gg][sub_inds[0]] = np.std(cur_IFI)/np.mean(cur_IFI) 
-             else:
-                 ISImuFast[gg][sub_inds[0]] = 0
-                 ISIstdFast[gg][sub_inds[0]] = 0
-                 Fast_CV[gg][sub_inds[0]] = 0
-         sub_inds[0] = sub_inds[0] + 1 #update subject index
-     elif(ctup[0]==MediumCombo[0] and ctup[1]==MediumCombo[1]): #medium condition
+     if(ctup[0]==MediumCombo[0] and ctup[1]==MediumCombo[1]): #medium condition
          for gg in range(GameNb):
              cur_IFI = np.array(MediumIFI[subj][gg])
              if(not(cur_IFI.size == 0)):
-                 ISImuMedium[gg][sub_inds[1]] = np.mean(cur_IFI)
-                 ISIstdMedium[gg][sub_inds[1]] = np.std(cur_IFI)
-                 Medium_CV[gg][sub_inds[1]] = np.std(cur_IFI)/np.mean(cur_IFI) 
+                 ISImuMedium[gg][sub_inds[0]] = np.mean(cur_IFI)
+                 ISIstdMedium[gg][sub_inds[0]] = np.std(cur_IFI)
+                 Medium_CV[gg][sub_inds[0]] = np.std(cur_IFI)/np.mean(cur_IFI) 
              else:
-                 ISImuMedium[gg][sub_inds[1]] = 0
-                 ISIstdMedium[gg][sub_inds[1]] = 0
-                 Medium_CV[gg][sub_inds[1]] = 0
-         sub_inds[1] = sub_inds[1] + 1
+                 ISImuMedium[gg][sub_inds[0]] = 0
+                 ISIstdMedium[gg][sub_inds[0]] = 0
+                 Medium_CV[gg][sub_inds[0]] = 0
+         sub_inds[0] = sub_inds[0] + 1
      elif(ctup[0]==SlowCombo[0] and ctup[1]==SlowCombo[1]): #slow condition
          for gg in range(GameNb):
              cur_IFI = np.array(SlowIFI[subj][gg])
              if(not(cur_IFI.size == 0)):
-                 ISImuSlow[gg][sub_inds[2]] = np.mean(cur_IFI)
-                 ISIstdSlow[gg][sub_inds[2]] = np.std(cur_IFI)
-                 Slow_CV[gg][sub_inds[2]] = np.std(cur_IFI)/np.mean(cur_IFI) 
+                 ISImuSlow[gg][sub_inds[1]] = np.mean(cur_IFI)
+                 ISIstdSlow[gg][sub_inds[1]] = np.std(cur_IFI)
+                 Slow_CV[gg][sub_inds[1]] = np.std(cur_IFI)/np.mean(cur_IFI) 
              else:
-                 ISImuSlow[gg][sub_inds[2]] = 0
-                 ISIstdSlow[gg][sub_inds[2]] = 0
-                 Slow_CV[gg][sub_inds[2]] = 0
-         sub_inds[2] = sub_inds[2] + 1
+                 ISImuSlow[gg][sub_inds[1]] = 0
+                 ISIstdSlow[gg][sub_inds[1]] = 0
+                 Slow_CV[gg][sub_inds[1]] = 0
+         sub_inds[1] = sub_inds[1] + 1
 
  for gg in range(GameNb):
      MuSlow_CV[gg] = np.mean(Slow_CV[gg])
      MuMedium_CV[gg] = np.mean(Medium_CV[gg])
-     MuFast_CV[gg] = np.mean(Fast_CV[gg])
      MusISI[0,gg] = np.mean(ISImuSlow[gg])
      MusISI[1,gg] = np.mean(ISImuMedium[gg])
-     MusISI[2,gg] = np.mean(ISImuFast[gg])
      StdISI[0,gg] = np.mean(ISIstdSlow[gg])
      StdISI[1,gg] = np.mean(ISIstdMedium[gg])
-     StdISI[2,gg] = np.mean(ISIstdFast[gg])
 
 
  #Now printing the Excel version of the table to help plot results
@@ -261,14 +233,6 @@ for CurSpeed in AllSpeeds:
  ff_toWrite = open(SeqFile,"w+")
  ToWrite = "Subject\tcondition1\tcondition2\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\n"
  ff_toWrite.write(ToWrite)
- #Printing Fast
- for subj in range(NbNames):
-     cName = FastNames[subj]
-     ToWrite = cName+'\t'+FastCombo[0]+'\t'+FastCombo[1]
-     for gg in range(GameNb):
-         ToWrite=ToWrite+'\t'+str(ISImuFast[gg][subj])
-     ToWrite=ToWrite+"\n"
-     ff_toWrite.write(ToWrite)
  #Printing Medium
  for subj in range(NbNames):
      cName = MediumNames[subj]+'\t'+MediumCombo[0]+'\t'+MediumCombo[1]
@@ -292,14 +256,6 @@ for CurSpeed in AllSpeeds:
  ff_toWrite = open(SeqFile,"w+")
  ToWrite = "Subject\tcondition1\tcondition2\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\n"
  ff_toWrite.write(ToWrite)
- #Printing Fast
- for subj in range(NbNames):
-     cName = FastNames[subj]
-     ToWrite = cName+'\t'+FastCombo[0]+'\t'+FastCombo[1]
-     for gg in range(GameNb):
-         ToWrite=ToWrite+'\t'+str(ISIstdFast[gg][subj])
-     ToWrite=ToWrite+"\n"
-     ff_toWrite.write(ToWrite)
  #Printing Medium
  for subj in range(NbNames):
      cName = MediumNames[subj]+'\t'+MediumCombo[0]+'\t'+MediumCombo[1]
@@ -323,14 +279,6 @@ for CurSpeed in AllSpeeds:
  ff_toWrite = open(SeqFile,"w+")
  ToWrite = "Subject\tcondition1\tcondition2\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\n"
  ff_toWrite.write(ToWrite)
- #Printing Fast
- for subj in range(NbNames):
-     cName = FastNames[subj]
-     ToWrite = cName+'\t'+FastCombo[0]+'\t'+FastCombo[1]
-     for gg in range(GameNb):
-         ToWrite=ToWrite+'\t'+str(Fast_CV[gg][subj])
-     ToWrite=ToWrite+"\n"
-     ff_toWrite.write(ToWrite)
  #Printing Medium
  for subj in range(NbNames):
      cName = MediumNames[subj]+'\t'+MediumCombo[0]+'\t'+MediumCombo[1]
@@ -353,7 +301,6 @@ for CurSpeed in AllSpeeds:
 Types = ['CVIFI','MeanIFI','StdIFI']
 for Type in Types:
  paths = [
-     path+Type+'_fastTransfer_Humans.txt',
      path+Type+'_mediumTransfer_Humans.txt',
      path+Type+'_slowTransfer_Humans.txt'
  ]

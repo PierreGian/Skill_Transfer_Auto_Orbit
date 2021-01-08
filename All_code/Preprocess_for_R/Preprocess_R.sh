@@ -32,14 +32,15 @@ then
 	python CVMu_Models.py $SPEED $MNAME
 	cd ../
 fi
+cd Scripts
 python CVMu_Humans.py
 python Reformat_Measures.py
-cd ./Human_Inputs
+cd ../Human_Inputs
 mkdir Outputs/old
 cd Outputs
-mv CVIFI_fastTransfer_Humans.txt CVIFI_mediumTransfer_Humans.txt CVIFI_slowTransfer_Humans.txt ./old/
-mv StdIFI_fastTransfer_Humans.txt StdIFI_mediumTransfer_Humans.txt StdIFI_slowTransfer_Humans.txt ./old/
-mv MeanIFI_fastTransfer_Humans.txt MeanIFI_mediumTransfer_Humans.txt MeanIFI_slowTransfer_Humans.txt ./old/
+mv CVIFI_mediumTransfer_Humans.txt CVIFI_slowTransfer_Humans.txt ./old/
+mv StdIFI_mediumTransfer_Humans.txt StdIFI_slowTransfer_Humans.txt ./old/
+mv MeanIFI_mediumTransfer_Humans.txt MeanIFI_slowTransfer_Humans.txt ./old/
 mv Amplitude_thresh_ALL_Humans_avg_Transfer.txt ./old/
 mv Entropy_ALL_Humans_Transfer.txt ./old/
 mv Periodicity_thresh_ALL_Humans_avg_Transfer.txt ./old/

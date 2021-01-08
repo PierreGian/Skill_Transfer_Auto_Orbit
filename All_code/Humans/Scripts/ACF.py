@@ -14,7 +14,7 @@ import os
 #Special search file to get all the human names
 from glob import glob
 GameNb=15
-N = 180
+N = 80
 Data_file = 'Data'
 Preproc_file = 'Preproc'
 Output_file = 'Outputs'
@@ -23,7 +23,7 @@ Name_Output = 'ALL_Humans_avg'
 
 Allnames=[j for j in range(N)]
 Allconds=[('','') for j in range(N)]
-SeqFile = '../Scripts/Summary_Scores_ALL.txt'
+SeqFile = '../Scripts/Transfer_Scores_Humans.txt'
 f_toOpen = open(SeqFile,"r") 
 lines = [line.rstrip().split("\t") for line in f_toOpen]
 cats = lines[0]
@@ -138,7 +138,7 @@ for subj in range(SubjNb):
 path = '../'+Output_file+'/'
 SeqFile = path+'Periodicity_thresh_'+Name_Output+'_Transfer.txt'
 ff_toWrite = open(SeqFile,"w+")
-ToWrite = "ModelNb\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\n"
+ToWrite = "Subject\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\n"
 ff_toWrite.write(ToWrite)
 for subj in range(SubjNb):
     ToWrite = names[subj]

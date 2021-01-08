@@ -11,13 +11,13 @@ def FindSubIdx(name,all_names):
 
 #Prepare Human Data
 GameNb=15
-SubjNb = 180
+SubjNb = 80
 path = '../Human_Inputs/Outputs/'
 names=[j for j in range(SubjNb)]
 conds=[('','') for j in range(SubjNb)]
 Points = [['' for gg in range(GameNb)] for ss in range(SubjNb)]
 avgs=np.zeros(SubjNb)
-SeqFile = path+'Summary_Scores_ALL.txt'
+SeqFile = path+'Transfer_Scores_Humans.txt'
 f_toOpen = open(SeqFile,"r") 
 lines = [line.rstrip().split("\t") for line in f_toOpen]
 cats = lines[0]

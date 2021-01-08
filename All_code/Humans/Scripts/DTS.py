@@ -8,10 +8,10 @@ import pylab
 
 ##### Load prepared Excel data file with scores
 GameNb=15
-SubjNb = 180
+SubjNb = 80
 Allnames=[j for j in range(SubjNb)]
 Allconds=[('','') for j in range(SubjNb)]
-SeqFile = '../Scripts/Summary_Scores_ALL.txt'
+SeqFile = '../Scripts/Transfer_Scores_Humans.txt'
 f_toOpen = open(SeqFile,"r") 
 lines = [line.rstrip().split("\t") for line in f_toOpen]
 cats = lines[0]

@@ -28,27 +28,29 @@ ff_toWrite.write(ToWrite)
 #Store data from each file
 for pp in paths:
     SeqFile = pp
-    f_toOpen = open(SeqFile,"r") 
-    lines = [line.rstrip() for line in f_toOpen]
-    for i,line in enumerate(lines):
-        if(i>0):
-            lineSplit = line.split("\t")
-            ToAdd=''
-            if(lineSplit[2]=='slow' and lineSplit[3]=='slow'):
-                ToAdd='SSS'
-                ToWrite=line+"\t"+ToAdd+"\n"
-                ff_toWrite.write(ToWrite)
-            elif(lineSplit[2]=='slow' and lineSplit[3]=='medium'):
-                ToAdd='SMS'
-                ToWrite=line+"\t"+ToAdd+"\n"
-                ff_toWrite.write(ToWrite)
-            elif(lineSplit[2]=='medium' and lineSplit[3]=='slow'):
-                ToAdd='MSM'
-                ToWrite=line+"\t"+ToAdd+"\n"
-                ff_toWrite.write(ToWrite)
-            elif(lineSplit[2]=='medium' and lineSplit[3]=='medium'):
-                ToAdd='MMM'
-                ToWrite=line+"\t"+ToAdd+"\n"
-                ff_toWrite.write(ToWrite)
+    try:
+        f_toOpen = open(SeqFile,"r") 
+        lines = [line.rstrip() for line in f_toOpen]
+        for i,line in enumerate(lines):
+            if(i>0):
+                lineSplit = line.split("\t")
+                ToAdd=''
+                if(lineSplit[2]=='slow' and lineSplit[3]=='slow'):
+                    ToAdd='SSS'
+                    ToWrite=line+"\t"+ToAdd+"\n"
+                    ff_toWrite.write(ToWrite)
+                elif(lineSplit[2]=='slow' and lineSplit[3]=='medium'):
+                    ToAdd='SMS'
+                    ToWrite=line+"\t"+ToAdd+"\n"
+                    ff_toWrite.write(ToWrite)
+                elif(lineSplit[2]=='medium' and lineSplit[3]=='slow'):
+                    ToAdd='MSM'
+                    ToWrite=line+"\t"+ToAdd+"\n"
+                    ff_toWrite.write(ToWrite)
+                elif(lineSplit[2]=='medium' and lineSplit[3]=='medium'):
+                    ToAdd='MMM'
+                    ToWrite=line+"\t"+ToAdd+"\n"
+                    ff_toWrite.write(ToWrite)
+    except (FileNotFoundError, IOError):
+    	print("%s does not exist"%SeqFile)
 ff_toWrite.close()
-

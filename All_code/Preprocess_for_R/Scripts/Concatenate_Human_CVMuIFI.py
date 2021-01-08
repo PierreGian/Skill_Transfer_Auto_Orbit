@@ -1,13 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
 
 import numpy as np
-
-
-# In[19]:
 
 
 Type = 'CVIFI'
@@ -16,9 +11,6 @@ paths = [
     '/Users/pierregianferrara/Documents/Academic/CMU_PhD/Programming/Auto_Orbit/Transfer_All/All_subjects/Outputs/'+Type+'_mediumTransfer_Humans.txt',
     '/Users/pierregianferrara/Documents/Academic/CMU_PhD/Programming/Auto_Orbit/Transfer_All/All_subjects/Outputs/'+Type+'_slowTransfer_Humans.txt'
 ]
-
-
-# In[20]:
 
 
 #Store final table in the R way
@@ -38,10 +30,6 @@ for ii,pp in enumerate(paths):
             ToWrite = line+'\n'
             if(not(PrintFirst==False and i==0)):
                 ff_toWrite.write(ToWrite)
-
-
-# In[ ]:
-
 
 
 

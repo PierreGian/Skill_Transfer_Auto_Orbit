@@ -1,7 +1,7 @@
 #!/bin/bash
 SPEED=$1 #Pass either of MMM, SSS,SMS,MSM
 mkdir ${SPEED}
-cp -r Data_${SPEED} ${SPEED}
+cp -r Model_Data/Data_${SPEED} ${SPEED}
 mkdir ./${SPEED}/${SPEED}_dat
 mkdir ./${SPEED}/${SPEED}_evt
 mv ./${SPEED}/Data_${SPEED} ./${SPEED}/${SPEED}

@@ -7,13 +7,13 @@ import pylab
 
 ##### Load prepared Excel data file with scores
 GameNb=15
-SubjNb = 180
+SubjNb = 80
 OutputPath='../Human_Inputs/Outputs/'
 names=['' for j in range(SubjNb)]
 conds=[('','') for j in range(SubjNb)]
 scores=[('','','','','','','','','','','','','','','') for j in range(SubjNb)]
 avgs = ['' for j in range(SubjNb)]
-SeqFile = OutputPath+'/Summary_Scores_ALL.txt'
+SeqFile = OutputPath+'/Transfer_Scores_Humans.txt'
 f_toOpen = open(SeqFile,"r") 
 lines = [line.rstrip().split("\t") for line in f_toOpen]
 
