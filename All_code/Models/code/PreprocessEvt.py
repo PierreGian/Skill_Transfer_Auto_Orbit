@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-#Special search file to get all the model names
 from glob import glob
 GameNb=15
 

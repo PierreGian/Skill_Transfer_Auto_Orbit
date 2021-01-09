@@ -111,10 +111,10 @@ for subj in range(SubjNb):
         amp = 0
         if(len(lag_acf)==len_lag):
             vec = ACF_avg[subj][nn]
-            max_all = argrelextrema(vec, np.greater)[0]
-            amp_max = np.array([vec[ee] for ee in max_all])
+            max_all = argrelextrema(vec, np.greater)[0] #Get the maximum (extrema) of the function -> periodicity in terms of time ticks
+            amp_max = np.array([vec[ee] for ee in max_all]) #Extract amplitude of maximum
             for iii,mm in enumerate(amp_max):
-                if(mm>0.01):
+                if(mm>0.02): #threshold needs to be 0.02!
                     amp=mm
                     per=max_all[iii]*16
                     break

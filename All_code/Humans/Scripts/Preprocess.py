@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-#Special search file to get all the model names
 from glob import glob
 GameNb=15
 Data_file = "Data"
@@ -14,10 +13,10 @@ NbPaths = len(paths)
 #print(paths)
 names = [paths[i].split('/')[-1].split('.')[0].split('_')[0] for i in range(NbPaths)]
 SubjNb = len(names)
-#names contains all the names of all the model subjects
+#names contains all the names of all the subjects
 
 
-#This cell is creating *.evts, *.holds and *.holrel files
+#This cell is creating *.evts, *.holds and *.holrel files, we are only keeping the events of interest for each file type
 for subj in range(SubjNb):
     currPlayer = "../Data/"+names[subj] 
     Player_T = "../Preproc/"+names[subj] 

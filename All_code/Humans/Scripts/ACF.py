@@ -11,7 +11,6 @@ from statsmodels.tsa.stattools import acf, pacf
 from scipy.signal import argrelextrema
 import os
 
-#Special search file to get all the human names
 from glob import glob
 GameNb=15
 N = 80
@@ -34,7 +33,6 @@ for ii in np.arange(1,len(lines)):
     Allconds[idx] = (cur_line[1],cur_line[2])
     idx=idx+1
 
-#Special search file to get all the human names and the conditions they were assigned to
 from glob import glob
 GameNb=15
 Data_file = "Data"
@@ -58,7 +56,7 @@ Fires = [[[] for gg in range(GameNb)] for i in range(SubjNb)]
 
 
 #Looping through all the subjects
-numlags = 125
+numlags = 125 #number of lags 125*16 = 2000 ms
 for subj,name in enumerate(names):
     for el,gg in enumerate(range(GameNb)):
         #1) Get the right condition corresponding to the game number
@@ -118,15 +116,15 @@ for subj in range(SubjNb):
             series = data_fr['IPIs']
             lag_acf = acf(series, nlags=numlags)
             All_ACFs[subj][nn].append(lag_acf)
-        ACF_avg[subj][nn]=np.mean(np.array(All_ACFs[subj][nn]),axis=0)
+        ACF_avg[subj][nn]=np.mean(np.array(All_ACFs[subj][nn]),axis=0) #average across game cycles within games
         per = 0
         amp = 0
         if(len(lag_acf)==len_lag):
             vec = ACF_avg[subj][nn]
             max_all = argrelextrema(vec, np.greater)[0]
-            amp_max = np.array([vec[ee] for ee in max_all])
+            amp_max = np.array([vec[ee] for ee in max_all]) #Extract amplitudes of maximums
             for iii,mm in enumerate(amp_max):
-                if(mm>0.01):
+                if(mm>0.02): #Threshold needs to be 0.02!! Extract first peak - amplitude & periodicity
                     amp=mm
                     per=max_all[iii]*16
                     break

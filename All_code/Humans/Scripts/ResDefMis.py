@@ -53,7 +53,7 @@ for subj in range(N):
         lines = [line.rstrip().split("\t") for line in f_toOpen]
         for line in lines:
             if(line[2]=="vlner-reset"):
-                resets[k]=resets[k]+1
+                resets[k]=resets[k]+1 #Count number of reset events
         f_toOpen.close()
     ToWrite = names[subj]+"\t"+conds[subj][0]+"\t"+conds[subj][1]
     for k in range(GameNb):
@@ -79,7 +79,7 @@ for subj in range(N):
         lines = [line.rstrip().split("\t") for line in f_toOpen]
         for line in lines:
             if(line[2]=="start-deflating"):
-                deflates[k]=deflates[k]+1
+                deflates[k]=deflates[k]+1 #count number of deflation events
         f_toOpen.close()
     ToWrite = names[subj]+"\t"+conds[subj][0]+"\t"+conds[subj][1]
     for k in range(GameNb):
@@ -112,7 +112,7 @@ for subj in range(N):
                 hits[k]=hits[k]+1
             elif(line[2]=="missile-fired"):
                 fires[k]=fires[k]+1
-        misses[k]=fires[k]-hits[k]
+        misses[k]=fires[k]-hits[k] #Get number of missile-fired and subtract number of hits from that
         f_toOpen.close()
     ToWrite = names[subj]+"\t"+conds[subj][0]+"\t"+conds[subj][1]
     for k in range(GameNb):

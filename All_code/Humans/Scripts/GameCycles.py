@@ -40,6 +40,7 @@ for i,nn in enumerate(names):
         if(nn==aa):
             conds[i]=Allconds[j]
 
+#Function that checks timing
 def Check_Timing(cur_cyc):
     prev_t = 0
     for ee in cur_cyc:
@@ -104,6 +105,7 @@ for subj,name in enumerate(names):
                 cur_cond = conds[subj][0]
             game = str(k+1)
             name_file = ''
+            #Need to check random rotations and output in Rotations OR No_Rotations folder
             if(rotations[ii]==1):
                 c_rot_nb = c_rot_nb + 1
                 name_file = path+"Rotations/"+name+"_"+cur_cond+"_Game"+game+"_Rot"+str(c_rot_nb)+".txt"
@@ -134,7 +136,7 @@ for subj,name in enumerate(names):
                         toAdd='R'
                     elif(evt=="hold-fire"):
                         toAdd='F'
-                    elif(evt=="hold-thrust"):
+                    elif(evt=="hold-thrust"): #Space Fortress used to have "hold-thrust" - W key, so we want to skip this
                         continue
                     if(not(cc==0)): #1st cycle: remove first element/others: would be fortress-respawn 
                         Evts.append(toAdd)

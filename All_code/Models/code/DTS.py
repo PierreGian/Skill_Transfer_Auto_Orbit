@@ -12,8 +12,6 @@ Argums = sys.argv
 Type = Argums[1] #'FFF', 'MMM'
 ########################################
 
-
-#Special search file to get all the model names
 from glob import glob
 GameNb=15
 #Specify Evt file here!

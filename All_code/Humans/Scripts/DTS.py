@@ -39,7 +39,7 @@ for i,nn in enumerate(names):
         if(nn==aa):
             conds[i]=Allconds[j]
 
-#Function for DTS -> ONLY Holds will generate series of 1s (even if the release is outside the DTS matrix)
+#Function for DTS -> ONLY Holds will generate series of ones (even if the release is outside the DTS matrix)
 def Create_DTS(cur_cyc):
     res=16
     timeStart = int(np.floor(int(cur_cyc[0][1])/res)*res)
