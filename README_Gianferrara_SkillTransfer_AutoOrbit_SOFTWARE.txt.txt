@@ -46,7 +46,7 @@ KiltHub (CMU repository)
 3. Was data derived from another source? No
 
 4. Recommended citation for this dataset: 
-Gianferrara, Betts & Anderson (2021)
+Gianferrara, P. G., Betts, S., & Anderson, J. R. (2021). Cognitive & motor skill transfer across speeds: A video game study. Plos one, 16(10), e0258242.
 
 DATA & FILE OVERVIEW
 
