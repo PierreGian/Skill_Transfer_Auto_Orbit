@@ -42,6 +42,8 @@ Users have the right to download and use this code, but are required to cite Gia
 
 2. Links to other publicly accessible locations of the data: 
 KiltHub (CMU repository)
+Gianferrara, Pierre (2021). Cognitive & Motor Skill Transfer Across Speeds: A Video Game Study (Software and Models). Carnegie Mellon University. Software. https://doi.org/10.1184/R1/13836224
+https://kilthub.cmu.edu/articles/software/Cognitive_Motor_Skill_Transfer_Across_Speeds_A_Video_Game_Study_Software_and_Models_/13836224?file=29157822
 
 3. Was data derived from another source? No
 
